@@ -1,0 +1,2 @@
+#1  создать терминал и написать "python manage.py runserver"
+#2  создать еще 1 терминал и написать "cd pubic" потом " npm run dev"
