@@ -19,11 +19,19 @@
       "dest": "/api/index.py"
     },
     {
+      "src": "/admin/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/delete_user/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
       "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "/public/dist/index.html"
+      "dest": "/index.html"
     }
   ]
 }
