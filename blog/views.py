@@ -32,7 +32,7 @@ class orderAdd(APIView):
                 "order_id":str(time.time())
                 }
             url = checkout.url(data).get('checkout_url')
-            return Response({'result':'sdfsdb...','url':url})
+            return Response({'result':'загрузка..','url':url})
         return Response({'result':'info'})
         
 

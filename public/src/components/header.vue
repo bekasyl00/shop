@@ -26,7 +26,7 @@ export default{
         <li><RouterLink to="/items" active-class="active">Товары</RouterLink></li>
         <li><RouterLink to="/dostavka" active-class="active">Доставка</RouterLink></li>
         <li><RouterLink to="/about" active-class="active">Про нас</RouterLink></li>
-        <li><img src="/img/purchase.svg" alt="" @click="showBasket = !showBasket"></li>
+        <li class='last'><img src="/img/purchase.svg" alt="" @click="showBasket = !showBasket"></li>
     </ul>
     <div class="basket" v-if="showBasket">
         <div class="box"></div>
@@ -76,16 +76,20 @@ export default{
     transform: rotate(45deg);
 }
 header {
+
+
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 50px;
+    margin: 50px 20px 0 2%;
     
 }
 header ul {
     list-style: none;
-   
+    list-style: none;
+  padding: 0;
+  margin: 0;
 }
 header ul li {
     display: inline-block;
@@ -154,5 +158,11 @@ header ul li a {
     height: 50px;
     border: 1px solid silver;
     background: rgb(237, 237, 237);
+}
+li .last {
+  position: absolute; /* Устанавливаем абсолютное позиционирование */
+  right: 0; /* Привязываем к правому краю */
+  top: 50%; /* По вертикали можно центрировать */
+  transform: translateY(-50%); /* Центрирование по вертикали */
 }
 </style>

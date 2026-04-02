@@ -8,6 +8,7 @@ export default {
 </script>
 
 <template>
+
     <div>
         <Header :basket="basket" />
 <MainSection />
@@ -18,5 +19,8 @@ export default {
 <style>
 *{margin: 0;
 padding: 0;}
+.container {
+  width: 100%; /* Контейнер будет занимать всю доступную ширину экрана */
+}
 
 </style>

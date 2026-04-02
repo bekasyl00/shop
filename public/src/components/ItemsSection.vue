@@ -1,5 +1,6 @@
 <template>
 <div class="items">
+
   <div class="item" v-for="el in items" :key="el.slug">
     <img :src="'/img/' + el.image" :alt="el.title">
     <h3>{{ el.title }}</h3>
@@ -10,21 +11,23 @@
  <div >
       <img  class="svg"   :src="'/img/' + el.korz"  @click="el.korz=el.ptich" :alt="el.title" v-on:click="addtob(el)">
     </div>
-   
+ 
     </div>
 
 
   </div>
-  </div>
+ </div>
 </template>
 <script>
-import axios from 'axios' ;
+import apiClient from '@/lib/api'
 
 
 export default{
   props:['addtob'],
     data(){
         return{
+          searchQuery: '',
+      searchResults: []  ,
             items:[ ],
            
 
@@ -42,7 +45,7 @@ export default{
     
     async mounted(){
         try{
-          const res = await axios.get('http://127.0.0.1:8000/api/items/?format=json')
+          const res = await apiClient.get('/api/items/?format=json')
           this.items=res.data
         }catch(error){
           console.log(error)
@@ -53,8 +56,8 @@ export default{
 <style>
 .items{
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content:space-evenly;
+  align-items:center;
   flex-wrap:wrap
 }
 .item{
@@ -98,4 +101,6 @@ width: 90%;
     
     
   }}
+
+
 </style>

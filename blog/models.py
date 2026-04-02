@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+import json
+
 import pytz
 astana_timezone = pytz.timezone('Asia/Almaty')  # Это часовой пояс Астаны
 current_time_in_astana = timezone.now().astimezone(astana_timezone)
@@ -27,6 +29,8 @@ class order(models.Model):
     phone=models.CharField("Телефон номер", max_length=200)
     basket=models.TextField("Код товара")
     timer = models.DateTimeField('Дата', default=timezone.now)
+    
+    
 
 
 
@@ -37,6 +41,8 @@ class order(models.Model):
     
     def __str__(self):
         return self.name +''+self.surname+' ('+self.phone +')'
+    def __init__(self, basket):
+        self.basket = basket
 
 
 

@@ -1,6 +1,6 @@
 
 <script >
-import axios from 'axios'
+import apiClient from '@/lib/api'
 export default{
     props:['basket','deleteFromBasket'],
     data(){
@@ -8,9 +8,10 @@ export default{
       return{
         error:'',
         name:'',
-        surnam:'',
+        surname:'',
         password:'',
-        email:''
+        email:'',
+        phone:''
       
         
       }
@@ -58,13 +59,16 @@ export default{
          }
    
   
-         axios.post('http://127.0.0.1:8000/api/order-add/',data)
+         apiClient.post('/api/order-add/',data)
             .then(res => {
             this.error=res.data.result
             setTimeout(()=>{
               location.href=res.data.url
-            })
+            },700)
           })
+            .catch(() => {
+              this.error = 'Не удалось отправить заказ'
+            })
 
         }
       }

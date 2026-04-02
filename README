@@ -1,2 +1,48 @@
-#1  создать терминал и написать "python3 manage.py runserver"
-#2  создать еще 1 терминал и написать "cd public" потом " npm run dev"
+# Локальный запуск
+
+1. Терминал 1 (Django из корня проекта):
+	- `cd /Users/bekasyljaksylyk/работа/rest_api/rest`
+	- `source venv/bin/activate`
+	- `python manage.py migrate`
+	- `python manage.py runserver`
+
+2. Терминал 2 (Vue из папки public):
+	- `cd /Users/bekasyljaksylyk/работа/rest_api/rest/public`
+	- `npm install`
+	- `npm run dev`
+
+Важно: Vue ходит в Django API через `/api/*` и проксируется Vite на `http://127.0.0.1:8000`.
+
+# Supabase
+
+Для фронтенда переменные уже поддержаны в `public/.env`:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+
+Также есть шаблон `public/.env.example`.
+
+Для Django (если хотите использовать Supabase Postgres как основную БД) задайте в окружении:
+
+- `DATABASE_URL=postgresql://...`
+
+Если `DATABASE_URL` не задан, используется локальная SQLite.
+
+# Vercel
+
+Подготовлены файлы:
+
+- `vercel.json`
+- `api/index.py`
+- `requirements.txt`
+
+Что настроить в Vercel Environment Variables:
+
+- `DJANGO_DEBUG=0`
+- `DJANGO_SECRET_KEY=<ваш секрет>`
+- `DJANGO_ALLOWED_HOSTS=.vercel.app`
+- `DJANGO_CORS_ALLOWED_ORIGINS=https://<ваш-домен>.vercel.app`
+- `DJANGO_CSRF_TRUSTED_ORIGINS=https://<ваш-домен>.vercel.app`
+- `DATABASE_URL=<Supabase Postgres URL>`
+- `VITE_SUPABASE_URL=https://cmrisylttbhdebimpwte.supabase.co`
+- `VITE_SUPABASE_ANON_KEY=sb_publishable_Xs58bNQ5pL0G0_XoZm4t2A_Q5c-cXye`
